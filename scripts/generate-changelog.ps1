@@ -1,0 +1,1 @@
+git-cliff --config config/cliff.toml --output CHANGELOG.md

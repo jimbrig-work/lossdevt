@@ -11,12 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add .dockerignore
 - Add helper scripts for build, test, deploy
 - Add dependencies to separate config files for docker build process
+- Dockerfile template
+- Build-helpers.R
+- Update Dockerfile and deps.yml
+- Build and push script
 
 ### Configuration
 
 - Add data to cliff config
 - Add shiny to cliff.toml
 - Add build to cliff.toml
+- Allow config.yml
+- Gitignore build dir
 
 ### Data Preparation
 
@@ -25,6 +31,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Derive triangles dataprep
 - Add serialized caching layer to dataprep
 - Add prepped data to ShinyApp
+
+### Documentation
+
+- Create initial CHANGELOG.md
+- Update README
 
 ### Features
 
