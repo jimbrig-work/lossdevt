@@ -1,20 +1,58 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Loss Development Shiny App
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+- Live example: https://jimbrig.shinyapps.io/lossdevt
+- Code: https://github.com/jimbrig/loss_development_app
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Roadmap
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+A simple shiny web app with the following features:
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+1. Loss development triangles:
+  - Types:
+    - Paid
+    - Reported
+    - Case Reserves
+    - Reported Claim Counts
+  - Age-to-Age Factors Triangle
+  - Averages
+2. Actual vs. Expected
+3. Ultimate Selections
+
+## Installation
+
+- Clone repo and run `shiny::runApp("shiny_app")` or,
+- Pull docker image and run locally on port 8080:
+
+```bash
+docker run -p 8080:8080 -it ghcr.io/jimbrig/lossdevt:latest
+```
+
+### Related Projects
+
+- Online Rater 
+  - Live example: https://tychobra.shinyapps.io/online_rater
+  - Code: https://github.com/Tychobra/online_rater
+
+
+***
+
+### File and Folder Structure
+
+Use deploy.R script to deploy the app
+
+Only files and folders that need to be deployed with the Shiny app go in the "shiny_app/" folder.
+
+##### Project root level folders:
+
+  - "data_prep/" - for data preparation.  Most projects need data to be prepped from some raw format to a format ready for the app.  This folder is most heavily used in the early days of the project as we are exploring the data and cleaning up initial data issues.
+      - "provided/" - raw data provided by the client goes here.  This data is not tracked on GitHub
+      - "prepped/" - cleaned versions of the data in "provided" goes here.  This data is also not tracked on GitHub.
+  - "docs/" - additional documentation goes here
+  - "analysis/" - additional analysis e.g. EDA goes here.  Also if you are training models that may or may not end up in your Shiny app, do that here.
+  - You can make other folders as is appropriate for your project
+
+##### "shiny_app/" level folders:
+
+  - "www/" - contains all front end assets (i.e. css, js, and images)
+  - "data/" - contains any flat files that need to be deployed with the app
+  - "R/" - contains all R functions and modules.  Files containing modules should end with '_module.R'
