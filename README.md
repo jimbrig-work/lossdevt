@@ -3,6 +3,56 @@
 - Live example: https://jimbrig.shinyapps.io/lossdevt
 - Code: https://github.com/jimbrig/loss_development_app
 
+## Azure
+
+- Resource Group: `AS-RESERVE`
+- Container Registry: `acrreserve`
+- Docker image: `appreservingacceleration`
+- App Service Plan: `asp-as-reserve-app-reserving-acceleration`
+- Web App: `reserving-acceleration`
+- Deploy script: `az acr build --registry acrreserve --image appreservingacceleration .`
+
+### Deployment
+
+Configure docker for deploying to container registry:
+
+```powershell
+$azrpw = "<password"
+$acrpw | docker login acrreserve.azurecr.io --username acrreserve --password-stdin
+```
+
+Should see returned `Login succeeded` statement.
+
+#### Build
+
+```powershell
+Rscript scripts/build.R
+docker build -t lossdevt .
+```
+
+#### Test
+
+```powershell
+docker run --env SHINY_LOG_STDERR=1 --rm -p 8080:8080 lossdevt
+start http://localhost:8080
+```
+
+#### Deploy
+
+```powerhsell
+docker tag lossdevt acrreserve.azurecr.io/lossdevt:latest
+docker push acrreserve.azurecr.io/lossdevt:latest
+
+# check its in registry:
+az acr repository list -n shinyimages
+```
+
+Next, need to deploy the image on Azure and create the webapp:
+
+```powershell
+az webapp create -g AS_RESERVE -p asp-as-reserve-app-reserving-acceleration -n lossdevt -i acrreserve.azurecr.io/lossdevt:latest
+```
+
 ## Roadmap
 
 A simple shiny web app with the following features:
