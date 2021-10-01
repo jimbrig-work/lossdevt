@@ -44,6 +44,7 @@ commit_parsers = [
     { message = "^style", group = "Styling"},
     { message = "^test", group = "Testing"},
     { message = "^data", group = "Data Preparation"},
+    { message = "^shiny", group = "Shiny App Development"},
     { message = "^chore\\(release\\): prepare for", skip = true},
     { message = "^chore", group = "Miscellaneous Tasks"},
     { body = ".*security", group = "Security"},
