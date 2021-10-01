@@ -3,6 +3,8 @@
 - Live example: https://jimbrig.shinyapps.io/lossdevt
 - Code: https://github.com/jimbrig/loss_development_app
 
+## Overview
+
 ## Azure
 
 - Resource Group: `AS-RESERVE`
@@ -14,6 +16,14 @@
 
 ### Deployment
 
+- Deploy locally using `Docker`
+- Deploy automatically via AzureDevOps Pipelines (for AzureDevOps)
+- Deploy automatically via GitHub Actions
+
+#### Local Deployment with Docker
+
+> Note: For best practices and quicker build times, I recommend using WSL and its Docker Integration with *Linux Containers* to build and run any docker images/containers. 
+
 Configure docker for deploying to container registry:
 
 ```powershell
@@ -23,21 +33,21 @@ $acrpw | docker login acrreserve.azurecr.io --username acrreserve --password-std
 
 Should see returned `Login succeeded` statement.
 
-#### Build
+##### Build
 
 ```powershell
 Rscript scripts/build.R
 docker build -t lossdevt .
 ```
 
-#### Test
+##### Test
 
 ```powershell
 docker run --env SHINY_LOG_STDERR=1 --rm -p 8080:8080 lossdevt
 start http://localhost:8080
 ```
 
-#### Deploy
+##### Deploy
 
 ```powerhsell
 docker tag lossdevt acrreserve.azurecr.io/lossdevt:latest
@@ -77,18 +87,12 @@ A simple shiny web app with the following features:
 docker run -p 8080:8080 -it ghcr.io/jimbrig/lossdevt:latest
 ```
 
-### Related Projects
-
-- Online Rater 
-  - Live example: https://tychobra.shinyapps.io/online_rater
-  - Code: https://github.com/Tychobra/online_rater
-
 
 ***
 
 ### File and Folder Structure
 
-Use deploy.R script to deploy the app
+Use `deploy.R` script to deploy the app
 
 Only files and folders that need to be deployed with the Shiny app go in the "shiny_app/" folder.
 
