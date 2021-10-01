@@ -35,7 +35,7 @@ R Shiny Web Application for simple loss reserving techniques and workflows.
 Configure docker for deploying to container registry:
 
 ```powershell
-$azrpw = "<password"
+$azrpw = "<password>"
 $acrpw | docker login acrreserve.azurecr.io --username acrreserve --password-stdin
 ```
 
