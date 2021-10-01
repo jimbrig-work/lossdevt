@@ -1,9 +1,17 @@
 # Loss Development Shiny App
 
-- Live example: https://jimbrig.shinyapps.io/lossdevt
-- Code: https://github.com/jimbrig/loss_development_app
+*Note: View the [CHANGLOG.md](CHANGELOG.md) for details on the project's development progress.* 
+
+- Live example: 
+  - ShinyApps.io: https://jimbrig.shinyapps.io/lossdevt
+  - Azure Web App: **WIP**
+- Code: 
+  - GitHub: https://github.com/jimbrig/loss_development_app
+  - AzureDevOps: https://dev.azure.com/actuarial-services/Reserving%20Modernization/_git/lossdevt
 
 ## Overview
+
+R Shiny Web Application for simple loss reserving techniques and workflows. 
 
 ## Azure
 
