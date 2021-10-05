@@ -37,8 +37,8 @@ RUN R -e "remotes::install_version('htmltools', version = '0.5.2', upgrade = 'ne
 
 
 # GitHub R packages
-RUN R -e "remotes::install_local('lib/summaryrow_0.0.1.tar.gz')"
-RUN R -e "remotes::install_local('lib/devtri_0.0.0.9001.tar.gz')"
+RUN R -e "remotes::install_github('merlinoa/summaryrow')"
+RUN R -e "remotes::install_github('ractuary/devtri')"
 
 FROM rpackages AS shinyapp
 
