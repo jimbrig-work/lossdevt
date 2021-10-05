@@ -2,24 +2,34 @@
 
 *Note: View the [CHANGLOG.md](CHANGELOG.md) for details on the project's development progress.* 
 
-## Pipeline Badges
+## Deployment
 
-[![Docker](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml)
+[![Build Docker Image](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml)
 
-[![Build and deploy container app to Azure Web App - lossdevt](https://github.com/jimbrig-work/lossdevt/actions/workflows/main_lossdevt.yml/badge.svg)](https://github.com/jimbrig-work/lossdevt/actions/workflows/main_lossdevt.yml)
+[![Deployment - Azure Web App](https://github.com/jimbrig-work/lossdevt/actions/workflows/main_lossdevt.yml/badge.svg)](https://github.com/jimbrig-work/lossdevt/actions/workflows/main_lossdevt.yml)
 
-- Live example: 
-  - ShinyApps.io: https://jimbrig.shinyapps.io/lossdevt
-  - Azure Web App: **WIP**
-- Code: 
-  - GitHub: https://github.com/jimbrig/loss_development_app
-  - AzureDevOps: https://dev.azure.com/actuarial-services/Reserving%20Modernization/_git/lossdevt
+- [x] Deploy locally using `Docker`
+- [x] Azure Web App Deployment Configuration/Profile
+- [x] Deploy automatically via GitHub Actions
+
+View a live version of the application hosted at various domains/cloud services:
+
+- Azure Web App: https://lossdevt.azurewebsites.net
+- ShinyApps.io: https://jimbrig.shinyapps.io/lossdevt
+
+- GCP Cloud Run: **WIP**
+- AWS: **WIP**
+
+### Source Code
+
+- GitHub: https://github.com/jimbrig-work/lossdevt | https://github.com/jimbrig/loss_development_app
+- AzureDevOps: https://dev.azure.com/actuarial-services/Reserving%20Modernization/_git/lossdevt
 
 ## Overview
 
 R Shiny Web Application for simple loss reserving techniques and workflows. 
 
-## Azure
+### Azure Details
 
 - Resource Group: `AS-RESERVE`
 - Container Registry: `acrreserve`
@@ -28,13 +38,7 @@ R Shiny Web Application for simple loss reserving techniques and workflows.
 - Web App: `reserving-acceleration`
 - Deploy script: `az acr build --registry acrreserve --image appreservingacceleration .`
 
-### Deployment
-
-- Deploy locally using `Docker`
-- Deploy automatically via AzureDevOps Pipelines (for AzureDevOps)
-- Deploy automatically via GitHub Actions
-
-#### Local Deployment with Docker
+### Local Deployment with Docker
 
 > Note: For best practices and quicker build times, I recommend using WSL and its Docker Integration with *Linux Containers* to build and run any docker images/containers. 
 
@@ -47,21 +51,21 @@ $acrpw | docker login acrreserve.azurecr.io --username acrreserve --password-std
 
 Should see returned `Login succeeded` statement.
 
-##### Build
+#### Build
 
 ```powershell
 Rscript scripts/build.R
 docker build -t lossdevt .
 ```
 
-##### Test
+#### Test
 
 ```powershell
 docker run --env SHINY_LOG_STDERR=1 --rm -p 8080:8080 lossdevt
 start http://localhost:8080
 ```
 
-##### Deploy
+#### Deploy
 
 ```powerhsell
 docker tag lossdevt acrreserve.azurecr.io/lossdevt:latest
