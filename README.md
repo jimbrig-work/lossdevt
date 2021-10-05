@@ -2,6 +2,10 @@
 
 *Note: View the [CHANGLOG.md](CHANGELOG.md) for details on the project's development progress.* 
 
+## Pipeline Badges
+
+[![Docker](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml)
+
 - Live example: 
   - ShinyApps.io: https://jimbrig.shinyapps.io/lossdevt
   - Azure Web App: **WIP**
