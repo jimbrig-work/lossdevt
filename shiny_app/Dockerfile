@@ -1,7 +1,6 @@
 FROM rocker/r-ver:latest AS sysreqs
 
 ENV CRAN_REPO https://packagemanager.rstudio.com/cran/__linux__/focal/latest
-ENV GITHUB_PAT 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
 
 RUN R -e "install.packages('remotes', repos = c('CRAN' = Sys.getenv('CRAN_REPO')))"
 
