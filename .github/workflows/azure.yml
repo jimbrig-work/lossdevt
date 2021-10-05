@@ -4,39 +4,34 @@ name: Deploy
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-#  push:
-#    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: 'Checkout GH Action'
-      - uses: actions/checkout@v2
-      - uses: azure/docker-login@v1
+      - name: 'Checkout Github Action'
+        uses: actions/checkout@master
+      
+      - name: 'ACR Login'          
+      - uses: docker-login@v1
         with: 
-          login-server: acrreserve.azurecr.io
+          login-server: 'acrreserve.azurecr.io'
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.RESISTRY_PASSWORD }}
           
+      - name: 'Build and Push'
       - run: |
           docker build . -t acrreserve.azurecr.io/lossdevt:${{ github.sha }}
           docker push acrreserve.azurecr.io/lossdevt:${{ github.sha }}
           
-      - uses: azure/webapps-deply@v2
+      - name: 'Deploy WebApp'
+        uses: azure/webapps-deply@v2
         with:
-          app-name: lossdevt
+          app-name: 'lossdevt'
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
           images: 'acrreserve.azurecr.io/lossdevt:${{ github.sha }}'
