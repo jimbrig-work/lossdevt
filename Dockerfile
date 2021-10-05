@@ -42,7 +42,7 @@ RUN R -e "remotes::install_github('ractuary/devtri')"
 
 FROM rpackages AS shinyapp
 
-COPY build /srv/shiny-server/shiny_app
+COPY shiny_app /srv/shiny-server/shiny_app
 
 EXPOSE 8080
 
