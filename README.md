@@ -6,6 +6,8 @@
 
 [![Docker](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/jimbrig-work/lossdevt/actions/workflows/docker-publish.yml)
 
+[![Build and deploy container app to Azure Web App - lossdevt](https://github.com/jimbrig-work/lossdevt/actions/workflows/main_lossdevt.yml/badge.svg)](https://github.com/jimbrig-work/lossdevt/actions/workflows/main_lossdevt.yml)
+
 - Live example: 
   - ShinyApps.io: https://jimbrig.shinyapps.io/lossdevt
   - Azure Web App: **WIP**
